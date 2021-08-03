@@ -11,18 +11,16 @@
   >
     <h1 class="fw-bold display-1">Traffic Boost</h1>
     <h2>Booster Management System</h2>
-    <h5 v-if="isAuthenticated" class="mt-4">
-      Selamat Datang, {{ $auth.user.name }}
-    </h5>
+    <h5 v-if="isAuthenticated" class="mt-4">Welcome, {{ $auth.user.name }}</h5>
     <div class="d-grid w-25 mt-3">
       <NuxtLink
         v-if="!isAuthenticated"
         to="/login"
         class="btn btn-primary p-3 shadow"
-        ><span class="fw-bold">MASUK</span></NuxtLink
+        ><span class="fw-bold">LOGIN</span></NuxtLink
       >
       <NuxtLink v-else to="/home" class="btn btn-primary p-3 shadow"
-        ><span class="fw-bold">Beranda</span></NuxtLink
+        ><span class="fw-bold">Home</span></NuxtLink
       >
     </div>
     <hr class="vw-5 mt-5" />

@@ -14,7 +14,7 @@
         <div class="card w-100 border-0 shadow rounded-5 py-5">
           <div class="card-body d-flex flex-column align-items-center">
             <h1 class="fw-bold">Traffic Boost</h1>
-            <h5 class="fw-bold">Setel Ulang Kata Sandi</h5>
+            <h5 class="fw-bold">Reset your password</h5>
             <div class="w-75 mt-4">
               <form @submit.prevent="resetPassword()">
                 <BaseInput
@@ -22,28 +22,28 @@
                   type="email"
                   placeholder="example@email.com"
                   form-for="formEmail"
-                  label="Alamat E-mail Terdaftar"
+                  label="E-mail"
                   required
                 />
                 <BaseInput
                   v-model="form.password"
                   type="password"
-                  placeholder="Kata Sandi"
+                  placeholder="Password"
                   form-for="formPassword"
-                  label="Kata Sandi"
+                  label="Password"
                   required
                 />
                 <BaseInput
                   v-model="form.password_confirmation"
                   type="password"
-                  placeholder="Ulang Kata Sandi"
+                  placeholder="Confirm Password"
                   form-for="formPasswordConfirmation"
-                  label="Ulang Kata Sandi"
+                  label="Confirm Password"
                   required
                 />
-                <NuxtLink to="/login">Batal</NuxtLink>
+                <NuxtLink to="/login">Cancel</NuxtLink>
                 <button type="submit" class="btn btn-primary w-100 mt-4">
-                  Ubah
+                  Reset Password
                 </button>
               </form>
             </div>
@@ -77,15 +77,12 @@ export default {
         this.$axios.$post('/reset-password', this.form)
       )
       if (error) {
-        this.$errorHandler(
-          'Penyetelan gagal! Lakukan permintaan email ulang atau coba sebentar lagi.',
-          {
-            timeout: 10000,
-          }
-        )
+        this.$errorHandler('Request failed! Please retry or try again later.', {
+          timeout: 10000,
+        })
         return
       }
-      this.$successHandler('Berhasil! Kata sandi Anda berhasil diubah!')
+      this.$successHandler('Success! Your password has been changed!')
       this.$router.push('/login')
     },
   },

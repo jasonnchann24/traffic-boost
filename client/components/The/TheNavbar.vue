@@ -18,10 +18,10 @@
       <div id="mainNavbar" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <NuxtLink to="/home" class="nav-link">Beranda</NuxtLink>
+            <NuxtLink to="/home" class="nav-link">Home</NuxtLink>
           </li>
           <li class="nav-item">
-            <NuxtLink to="/users" class="nav-link">Pengguna</NuxtLink>
+            <NuxtLink to="/users" class="nav-link">Users</NuxtLink>
           </li>
           <li class="nav-item dropdown me-5">
             <a
@@ -38,12 +38,12 @@
               class="dropdown-menu dropdown-menu-end"
               aria-labelledby="navbarDropdown"
             >
-              <li><a class="dropdown-item" href="#">Pengaturan Akun</a></li>
-              <li><a class="dropdown-item" href="#">Bantuan</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Help</a></li>
               <li><hr class="dropdown-divider" /></li>
               <li>
                 <button class="dropdown-item" @click="logMeOut()">
-                  Keluar
+                  Logout
                 </button>
               </li>
             </ul>
@@ -61,13 +61,11 @@ export default {
     async logMeOut() {
       const [_, error] = await this.$async(this.$auth.logout())
       if (error) {
-        this.$errorHandler(
-          'Sesuatu bermasalah! Coba untuk muat ulang halaman ini.'
-        )
+        this.$errorHandler('Something went wrong! Please refresh this page.')
         return
       }
       this.$router.push('/')
-      this.$successHandler('Berhasil keluar.')
+      this.$successHandler('Successfully logout.')
     },
   },
 }

@@ -4,14 +4,15 @@ namespace App\Models;
 
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
+
+// use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    use UuidTrait;
     use HasFactory;
 
-    protected $table = 'roles';
+    protected $collection = 'roles';
     protected $fillable = [
         'name',
         'slug'

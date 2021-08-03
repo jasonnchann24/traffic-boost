@@ -14,7 +14,7 @@
         <div class="card w-100 border-0 shadow rounded-5 py-5">
           <div class="card-body d-flex flex-column align-items-center">
             <h1 class="fw-bold">Traffic Boost</h1>
-            <h5 class="fw-bold">Lupa Kata Sandi</h5>
+            <h5 class="fw-bold">Forget Password</h5>
             <div class="w-75 mt-4">
               <form @submit.prevent="forgetPassword()">
                 <BaseInput
@@ -22,12 +22,12 @@
                   type="email"
                   placeholder="example@email.com"
                   form-for="formEmail"
-                  label="Alamat E-mail"
+                  label="E-mail Address"
                   required
                 />
-                <NuxtLink to="/login">Batal</NuxtLink>
+                <NuxtLink to="/login">Cancel</NuxtLink>
                 <button type="submit" class="btn btn-primary w-100 mt-4">
-                  Kirim Permintaan
+                  Send Request
                 </button>
               </form>
             </div>
@@ -57,11 +57,11 @@ export default {
         this.$axios.$post('/forgot-password', this.form)
       )
       if (error) {
-        this.$errorHandler('Permintaan gagal! Coba sebentar lagi.')
+        this.$errorHandler('Request failed! Try again later.')
         return
       }
       this.$successHandler(
-        'Berhasil! Permintaan penyetelan ulang kata sandi Anda sudah terkirim melalui email!'
+        'Success! Your request has been sent to your email. Please check your email!'
       )
     },
   },

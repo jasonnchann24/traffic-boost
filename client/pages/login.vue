@@ -19,39 +19,27 @@
             <h5>Booster Management System</h5>
 
             <div class="w-75 mt-2">
-              <p
-                class="
-                  text-danger
-                  mb-3
-                  p-2
-                  border-start border-danger border-4
-                  rounded-2
-                "
-              >
-                Jika Anda merupakan karyawan / tenant silahkan masuk melalui
-                aplikasi ponsel Anda.
-              </p>
               <form @submit.prevent="logMeIn()">
                 <BaseInput
                   v-model="form.email"
                   type="email"
                   placeholder="example@email.com"
                   form-for="formEmail"
-                  label="Alamat E-mail"
+                  label="E-mail Address"
                   required
                 />
                 <BaseInput
                   v-model="form.password"
                   type="password"
-                  placeholder="Kata Sandi"
+                  placeholder="Password"
                   form-for="formPassword"
-                  label="Kata Sandi"
+                  label="Password"
                   required
                 />
-                <NuxtLink to="/forgot-password">Lupa kata sandi?</NuxtLink>
+                <NuxtLink to="/forgot-password">Forget Password?</NuxtLink>
 
                 <button type="submit" class="btn btn-primary w-100 mt-3">
-                  MASUK
+                  LOGIN
                 </button>
               </form>
             </div>
@@ -85,10 +73,11 @@ export default {
             password: this.form.password,
           },
         })
-        this.$successHandler('Berhasil masuk.')
+        this.$successHandler('Logged in.')
+        this.$router.push('/home')
       } catch (err) {
         this.$errorHandler(
-          'Sesuatu bermasalah! Pastikan kembali email dan kata sandi, atau coba sebentar lagi.',
+          'Something went wrong! Invalid credentials or try again later.',
           { timeout: 10000 }
         )
       } finally {

@@ -4,15 +4,14 @@ namespace App\Models;
 
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
+use Jenssegers\Mongodb\Eloquent\Model;
 
 class UserPin extends Model
 {
-    use UuidTrait;
     use HasFactory;
 
-    protected $table = 'user_pins';
+    protected $collection = 'user_pins';
     protected $fillable = [
         'user_id',
         'pin'
