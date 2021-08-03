@@ -1,0 +1,31 @@
+@charset 'utf-8';
+
+@import '~bootstrap/scss/functions';
+@import '_variables.scss';
+@import '_utilities.scss';
+@import '~bootstrap/scss/bootstrap';
+
+// Fonts
+@font-face {
+  font-family: 'Centrale Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Centrale Sans Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Centrale Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Centrale Sans Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Centrale Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~assets/fonts/Centrale Sans Bold.otf') format('opentype');
+}
