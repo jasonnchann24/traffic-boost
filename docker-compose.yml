@@ -1,0 +1,58 @@
+version: "3"
+
+services:
+  nginx:
+    build:
+      context: docker/dev/nginx
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/www
+      - ./docker/dev/nginx/logs:/var/log/nginx
+    ports:
+      - 3000:80 # Client port
+      - 8000:81 # Laravel port
+    depends_on:
+      - client
+      - php
+
+  php:
+    build:
+      context: ./
+      dockerfile: docker/dev/php/Dockerfile
+    volumes:
+      - ./api:/var/www/api
+    environment:
+      XDEBUG_CONFIG: "remote_enable=1"
+      PHP_IDE_CONFIG: "serverName=Docker"
+    depends_on:
+      - mongo
+  #   - redis
+  #   - mailhog
+
+  mongo:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+
+  mongoclient:
+    image: mongoclient/mongoclient
+    ports:
+      - "3001:3000"
+    volumes:
+      - mongoclientdata:/data/db
+    depends_on:
+      - mongo
+
+  client:
+    build:
+      context: ./
+      dockerfile: ./docker/dev/client/Dockerfile
+    volumes:
+      - ./client:/var/www/client:consistent
+      - /var/www/client/node_modules/
+
+volumes:
+  mongodb-data:
+  mongoclientdata:
