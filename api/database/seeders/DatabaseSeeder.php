@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\Fake\FakeRoleSeeder;
-use Database\Seeders\Fake\FakeUserPinSeeder;
-use Database\Seeders\Fake\FakeUserSeeder;
+use Database\Seeders\FakeRoleSeeder;
+use Database\Seeders\FakeUserPinSeeder;
+use Database\Seeders\FakeUserSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             FakeRoleSeeder::class,
             FakeUserSeeder::class,
-            FakeUserPinSeeder::class
+            FakeUserPinSeeder::class,
+            FakeCategorySeeder::class,
+            FakeBlogSeeder::class,
         ]);
     }
 }

@@ -13,12 +13,12 @@ class CreateUserPinsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_pins', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('uuid')->index();
-            $table->foreignId('user_id')->constrained('users');
-            $table->string('pin');
-            $table->timestamps();
+        Schema::create('user_pins', function (Blueprint $collection) {
+            // $collection->id();
+            // $collection->uuid('uuid')->index();
+            // $collection->foreignId('user_id')->constrained('users');
+            // $collection->string('pin');
+            // $collection->timestamps();
         });
     }
 

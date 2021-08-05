@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders\Fake;
+namespace Database\Seeders;
 
 use App\Models\Role;
 use Illuminate\Database\Seeder;
