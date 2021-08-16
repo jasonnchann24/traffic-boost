@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TokenController;
@@ -24,6 +25,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('roles', RoleController::class)->only('index');
     Route::post('/suspend-user/{user}', [UserController::class, 'suspendUser']);
     Route::post('/unsuspend-user/{user}', [UserController::class, 'unSuspendUser']);
+
+    // features
 });
+Route::apiResource('blogs', BlogController::class);
 
 Route::post('/auth/token', TokenController::class);

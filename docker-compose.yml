@@ -26,8 +26,31 @@ services:
       PHP_IDE_CONFIG: "serverName=Docker"
     depends_on:
       - mongo
-  #   - redis
+      - redis
   #   - mailhog
+
+  # Supervisor container (schedule and queue runner)
+  supervisor:
+    build:
+      context: docker/dev/supervisor
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/www/
+      - ./docker/dev/supervisor/conf.d:/etc/supervisor/conf.d
+      - ./docker/dev/supervisor/logs:/var/log
+    depends_on:
+      - mongo
+      - redis
+      # - mailhog
+
+  redis:
+    build:
+      context: docker/dev/redis
+      dockerfile: Dockerfile
+    volumes:
+      - redis:/data
+    ports:
+      - 6001:6379
 
   mongo:
     image: mongo:5.0
@@ -56,3 +79,5 @@ services:
 volumes:
   mongodb-data:
   mongoclientdata:
+  redis:
+    driver: local

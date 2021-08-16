@@ -23,9 +23,16 @@ class Blog extends Model
      * },
      * category_ids: []
      * created_at,
-     * updated_at
+     * updated_at,
+     * view_counts
      */
     protected $guarded = [];
+
+    protected $with = ['categories'];
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function categories()
     {
@@ -35,5 +42,18 @@ class Blog extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function blogViews()
+    {
+        return $this->hasMany(BlogView::class);
+    }
+
+    public function attachBlogToCategories(Blog $blog, array $ids): void
+    {
+        foreach ($ids as $key => $id) {
+            $c = Category::find($id);
+            $c->blogs()->attach($blog->id);
+        }
     }
 }
